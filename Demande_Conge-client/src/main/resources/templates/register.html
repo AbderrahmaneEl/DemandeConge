@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	layout:decorator="template1">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>E-Congé</title>
+  <!-- loader-->
+  <link href="assets/css/pace.min.css" rel="stylesheet"/>
+  <script src="assets/js/pace.min.js"></script>
+  <!--favicon-->
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <!-- Bootstrap core CSS-->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- animate CSS-->
+  <link href="assets/css/animate.css" rel="stylesheet" type="text/css"/>
+  <!-- Icons CSS-->
+  <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+  <!-- Custom Style-->
+  <link href="assets/css/app-style.css" rel="stylesheet"/>
+  
+</head>
+
+<body class="bg-theme bg-theme1">
+
+<!-- start loader -->
+   <div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
+   <!-- end loader -->
+
+<!-- Start wrapper-->
+ <div id="wrapper">
+
+	<div class="card card-authentication1 mx-auto my-4">
+		<div class="card-body">
+		 <div class="card-content p-2">
+		 	<div class="text-center">
+		 		<img src="assets/images/logo-icon.png" alt="logo icon">
+		 	</div>
+		  <div class="card-title text-uppercase text-center py-3">Sign Up</div>
+		  
+		    <form name="registre" th:action="@{/saveEmployee}" method="post" >
+		    <p th:text="${#httpServletRequest.getParameter('error_password')}"></p>
+			  <div class="form-group">
+			  <label for="exampleInputName" class="sr-only">Nom</label>
+			   <div class="position-relative has-icon-right">
+				  <input type="text" id="exampleInputName" class="form-control input-shadow" placeholder="Entrer Votre Nom" name="nom">
+				  <div class="form-control-position">
+					  <i class="icon-user"></i>
+				  </div>
+			   </div>
+			  </div>
+			  <div class="form-group">
+			  <label for="exampleInputName" class="sr-only">Prénom</label>
+			   <div class="position-relative has-icon-right">
+				  <input type="text" id="exampleInputName" class="form-control input-shadow" placeholder="Entrer Votre Prénom" name="prenom">
+				  <div class="form-control-position">
+					  <i class="icon-user"></i>
+				  </div>
+			   </div>
+			  </div>
+			  <div class="form-group">
+			  <label for="exampleInputEmailId" class="sr-only">Email</label>
+			   <div class="position-relative has-icon-right">
+				  <input type="text" id="exampleInputEmailId" class="form-control input-shadow" placeholder="Enter Your Email " name="email">
+				  <div class="form-control-position">
+					  <i class="icon-envelope-open"></i>
+				  </div>
+			   </div>
+			  </div>
+			  <div class="form-group">
+			   <label for="exampleInputPassword" class="sr-only">Password</label>
+			   <div class="position-relative has-icon-right">
+				  <input type="password" id="exampleInputPassword" class="form-control input-shadow" placeholder="Choose Password" name="password">
+				  <div class="form-control-position">
+					  <i class="icon-lock"></i>
+				  </div>
+			   </div>
+			  </div>
+			  <div class="form-group">
+			   <label for="exampleInputPassword" class="sr-only">Confirmer Votre Password</label>
+			   <div class="position-relative has-icon-right">
+				  <input type="password" id="exampleInputPassword" class="form-control input-shadow" placeholder="Confirmer Votre Password" name="confirmpassword">
+				  <div class="form-control-position">
+					  <i class="icon-lock"></i>
+				  </div>
+			   </div>
+			  </div>
+			  <div class="form-group">
+			  Choisir Votre Services </br>
+			     <div class="icheck-material-white" th:each="service : ${services}">
+                   <input type="checkbox" name="services" th:id="${service.id}" th:value="${service.id}" />
+                   <label th:for="${service.id}" th:text=" ${service.nom_service}"></label>
+			     </div>
+			    </div>
+			    
+			  
+			  
+			 <button onclick="return isEmpty()" type="submit" class="btn btn-light btn-block waves-effect waves-light">Sign Up</button>
+			  
+			
+			 </form>
+		   </div>
+		  </div>
+		  <div class="card-footer text-center py-3">
+		    <p class="text-warning mb-0">Already have an account? <a href="login.html"> Sign In here</a></p>
+		  </div>
+	     </div>
+    
+     <!--Start Back To Top Button-->
+    
+    <!--End Back To Top Button-->
+	
+	<!--start color switcher-->
+  
+  <!--end color switcher-->
+	
+	</div><!--wrapper-->
+	
+  <!-- Bootstrap core JavaScript-->
+  <script>
+         function isEmpty(){
+             var str = document.forms['registre'].nom.value;
+             var str = document.forms['registre'].prenom.value;
+             var str = document.forms['registre'].email.value;
+             var str = document.forms['registre'].password.value;
+             if( !str.replace(/\s+/, '').length ) {
+                  alert( "Un champ  est vide!" );
+                  return false;
+             }
+         }
+</script>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+	
+  <!-- sidebar-menu js -->
+  <script src="assets/js/sidebar-menu.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="assets/js/app-script.js"></script>
+  
+</body>
+</html>
